@@ -4,22 +4,22 @@ import { CONTRACT } from "~~/utils/constants";
 export const useWriteFuzzContractHook = () => {
   const { writeContractAsync: writeFuzzBettingAsync } = useScaffoldWriteContract({ contractName: CONTRACT });
 
-  const useBetOnAgent = () => {
+  const betOnAgent = (isAgent: boolean, amount: number) => {
     return writeFuzzBettingAsync({
-      functionName: "betOnAgent",
-      args: [],
+      functionName: betOnAgent.name,
+      args: [isAgent, amount],
     });
   };
 
-  const useVoteForPrompt = (promptId: string, amount: number) => {
+  const voteForPrompt = (promptId: string, amount: number) => {
     return writeFuzzBettingAsync({
-      functionName: "voteForPrompt",
+      functionName: voteForPrompt.name,
       args: [promptId, amount],
     });
   };
 
   return {
-    useBetOnAgent,
-    useVoteForPrompt,
+    betOnAgent,
+    voteForPrompt,
   };
 };

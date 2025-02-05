@@ -16,7 +16,7 @@ export const useReadFuzzContractHook = () => {
     args: [],
   });
 
-  const useGetGamePrompts = (promptId: string) => {
+  const useGetGamePrompts = (promptId: number) => {
     return useScaffoldReadContract({
       contractName: CONTRACT,
       functionName: "getGamePrompts",

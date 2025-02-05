@@ -12,7 +12,7 @@ import { GenericContractsDeclaration } from "~~/utils/scaffold-eth/contract";
  * } as const;
  */
 const externalContracts = {
-  1: {
+  84532: {
     FuzzBetting: {
       address: "0x9b9379dECaee972a47A1A80B068b9D87ba074ffe",
       abi: [
