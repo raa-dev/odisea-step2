@@ -6,15 +6,15 @@ export const useWriteFuzzContractHook = () => {
 
   const betOnAgent = (isAgent: boolean, amount: number) => {
     return writeFuzzBettingAsync({
-      functionName: betOnAgent.name,
-      args: [isAgent, amount],
+      functionName: "betOnAgent",
+      args: [isAgent, BigInt(amount)],
     });
   };
 
-  const voteForPrompt = (promptId: string, amount: number) => {
+  const voteForPrompt = (promptId: number, amount: number) => {
     return writeFuzzBettingAsync({
-      functionName: voteForPrompt.name,
-      args: [promptId, amount],
+      functionName: "voteForPrompt",
+      args: [BigInt(promptId), BigInt(amount)],
     });
   };
 

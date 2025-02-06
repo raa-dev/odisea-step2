@@ -13,7 +13,6 @@ export const useReadFuzzContractHook = () => {
   const getCurrentGamePrompts = useScaffoldReadContract({
     contractName: CONTRACT,
     functionName: "getCurrentGamePrompts",
-    args: [],
   });
 
   const useGetGamePrompts = (promptId: bigint) => {
@@ -27,22 +26,21 @@ export const useReadFuzzContractHook = () => {
   const getTotalAcumulated = useScaffoldReadContract({
     contractName: CONTRACT,
     functionName: "getTotalAcumulated",
-    args: [],
   });
 
-  const useGetUserContribution = () => {
-    return useScaffoldReadContract({
-      contractName: CONTRACT,
-      functionName: "getUserContribution",
-      args: [],
-    });
-  };
+  // const useGetUserContribution = () => {
+  //   return useScaffoldReadContract({
+  //     contractName: CONTRACT,
+  //     functionName: "getUserContribution",
+  //     args: [],
+  //   });
+  // };
 
   return {
     useGetPrompt,
     useGetGamePrompts,
     getCurrentGamePrompts,
     getTotalAcumulated,
-    useGetUserContribution,
+    // useGetUserContribution,
   };
 };
