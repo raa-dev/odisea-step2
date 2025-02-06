@@ -2,8 +2,13 @@ import { useEffect, useState } from "react";
 import { useReadFuzzContractHook } from "./useReadFuzzContractHook";
 import { IGamePrompt } from "~~/utils/constants";
 
+interface IGameCollectedInfo {
+  gameId: number;
+  votes: number;
+}
+
 export const useCollectedInfoHook = () => {
-  const [filteredGames, setFilteredGames] = useState<number[]>([]);
+  const [filteredGames, setFilteredGames] = useState<IGameCollectedInfo[]>([]);
   const [isTotalAcumLoading, setIsTotalAcumLoading] = useState(false);
   const { getTotalAcumulated, useGetGamePrompts } = useReadFuzzContractHook();
 
@@ -15,10 +20,15 @@ export const useCollectedInfoHook = () => {
 
   useEffect(() => {
     if (gamePrompt.data) {
-      const gameIds = (gamePrompt.data as IGamePrompt[])?.map(prompt => Number(prompt?.gameId));
-      setFilteredGames(gameIds);
+      const gameCollection: IGameCollectedInfo[] = (gamePrompt.data as IGamePrompt[])?.map(prompt => ({
+        gameId: Number(prompt?.gameId),
+        votes: Number(prompt?.votes) / 10 ** 18,
+      }));
+      if (gameCollection.length > 0 && JSON.stringify(gameCollection) !== JSON.stringify(filteredGames)) {
+        setFilteredGames(gameCollection);
+      }
     }
-  }, [gamePrompt]);
+  }, [gamePrompt, filteredGames]);
 
   useEffect(() => {
     setIsTotalAcumLoading(getTotalAcumulated.isFetching && !getTotalAcumulated.isFetched);
@@ -28,6 +38,5 @@ export const useCollectedInfoHook = () => {
     filteredGames,
     isTotalAcumLoading,
     formattedTotalAcumulated,
-    gamePrompt,
   };
 };
