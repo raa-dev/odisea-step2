@@ -2,7 +2,7 @@ import { useScaffoldReadContract } from "../scaffold-eth";
 import { CONTRACT } from "~~/utils/constants";
 
 export const useReadFuzzContractHook = () => {
-  const useGetPrompt = (promptId: string) => {
+  const useGetPrompt = (promptId: bigint) => {
     return useScaffoldReadContract({
       contractName: CONTRACT,
       functionName: "getPrompt",
@@ -16,7 +16,7 @@ export const useReadFuzzContractHook = () => {
     args: [],
   });
 
-  const useGetGamePrompts = (promptId: number) => {
+  const useGetGamePrompts = (promptId: bigint) => {
     return useScaffoldReadContract({
       contractName: CONTRACT,
       functionName: "getGamePrompts",

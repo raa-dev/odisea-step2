@@ -16,7 +16,7 @@ export const useCollectedInfoHook = () => {
     ? (Number(getTotalAcumulated.data) / 10 ** 18).toFixed(2)
     : "0";
 
-  const gamePrompt = useGetGamePrompts(1);
+  const gamePrompt = useGetGamePrompts(BigInt(1));
 
   useEffect(() => {
     if (gamePrompt.data) {
